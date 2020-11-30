@@ -1,0 +1,41 @@
+<html>
+    <head >
+        <title>Edit</title>
+        <style>
+            ul{
+                float: right;
+                list-style-type: none;
+                margin-top: 10px;
+                margin-right: 50px;
+                }
+                ul li{
+                display: inline-block;
+                    }
+                ul li a{
+                text-decoration: none;
+                color:  #2F4F4F;
+                padding: 5px 20px;   
+                border: 1px solid #fff;
+                transition:0.6s ease; 
+                }
+       
+                ul li a:hover{
+                border-bottom-color: #fff;
+                color: #000;
+                }
+        </style>
+
+    </head>
+
+    <body topmargin="50" bgcolor="cyan" leftmargin="70">
+        <form action="edit2" method="POST">
+            {% csrf_token %}
+            <ul>
+                <li><a href="maker_home">Home</a></li>
+            </ul>
+            Question id<input type="text"  name="id"><br><br>
+            <input type="submit" value="Go" style="margin-left: 200px;" ><br><br>
+
+        </form>
+    </body>
+</html>

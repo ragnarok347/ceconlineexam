@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+    <head>
+        <title>Candidate Details</title>
+    </head>
+
+    <body topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/bg.jpg' %}">
+        <table align="center">
+            <tr>
+                <td>Registration Number</td>
+                <td><input type="text" value="{{stud.registration_id}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" value="{{stud.full_name}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" value="{{stud.email}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea rows="7" readonly>{{stud.addr}}</textarea></td>
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td><input type="text" value="{{stud.dob}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Photo</td>
+                <td><img src="{{i.pic.url}}" width="200" alt="sibin"></td>
+            </tr>
+            <tr>
+                <td>Id Proof</td>
+                <td><img src="{{i.idprof.url}}"></td>
+            </tr>
+        </table>
+    </body>
+</html>

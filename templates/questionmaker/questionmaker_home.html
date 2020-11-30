@@ -1,0 +1,34 @@
+{% extends 'newbase.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head >
+        <title>Question maker home</title>
+        
+    </head>
+
+    <body topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/maker_pic.jpg' %}">
+        <form>
+            <div class="main" >
+            {% csrf_token %}
+            <center><h1 class="title">E-SOFT</h1></center>
+            <ul style="margin-right: 70px;">
+                <li><a href="logout">Logout</a></li>
+            </ul>
+            
+            <ul style="float:left; margin-left: 50px;">
+                <li style="color: red;font-size: 25px;"><b>Welcome {{user.first_name}}</b></li>
+            </ul>
+            <input type="text" value="{{user.username}}" name="maker_id" hidden>
+            </div>
+
+            <div class="button">
+                <ul>
+                    <li><a href="create" class="btn">Create questions</a></li>
+                    <li><a href="upload" class="btn">Upload questions</a></li>
+                </ul>
+            </div>
+        </form>
+    </body>
+</html>
+{% endblock %}

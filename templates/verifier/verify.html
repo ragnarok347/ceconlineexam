@@ -1,0 +1,92 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head >
+        <title>Create questions</title>
+    </head>
+
+    <body>
+        <form action="verify" method="POST">
+            {% csrf_token %}
+        <div style="background-size: 1540px 1060px ; height: 1060;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}" >
+            <ul>
+                <li style="margin-top: 50;"><a href="verifier_home">Home</a></li>
+            </ul>
+            {% for i in que %}
+            {% if i.question_id == que_id %}
+            <br><br><br><br>
+            <div class="register">
+
+            <br><br><br><br>
+            
+            <table style="margin-left: 85px;color: white; border-spacing: 25px 15px;">
+                <tr>
+                    <td>Question id</td>
+                    <td><input type="text" name="question_id" value={{i.question_id}} style="width: 250px;"></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><select name="type1" value={{i.type1}} style="width: 250px;">
+                        <option {% if i.type1 == 'MCQ' %} selected="selected" {% endif %}>MCQ</option>
+                        <option {% if i.type1 == 'True/False' %} selected="selected" {% endif %}>True/False</option>
+                        <option {% if i.type1 == 'Short Answer' %} selected="selected" {% endif %}>Short Answer</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td><input type="text" name="category" value="{{i.category}}" style="width: 250px;"></td>
+                </tr>
+                <tr>
+                    <td>Difficulty</td>
+                    <td><select name="difficulty" value="{{i.difficulty}}" style="width: 250px;">
+                        <option {% if i.difficulty == 'Easy' %} selected="selected"{% endif %}>Easy</option>
+                        <option {% if i.difficulty == 'Medium' %} selected="selected"{% endif %}>Medium</option>
+                        <option {% if i.difficulty == 'Hard' %} selected="selected"{% endif %}>Hard</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Question</td>
+                    <td><textarea rows="8" cols="70" name="question">{{i.question}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Option A</td>
+                    <td><textarea rows="4" cols="70" name="option_a">{{i.option_a}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Option B<br></td>
+                    <td><textarea rows="4" cols="70" name="option_b">{{i.option_b}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Option C</td>
+                    <td><textarea rows="4" cols="70" name="option_c">{{i.option_c}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Option D</td>
+                    <td><textarea rows="4" cols="70" name="option_d">{{i.option_d}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Answer</td>
+                    <td><select name="answer" value={{i.answer}} style="width: 250px;">
+                        <option {% if i.answer == 'A' %} selected="selected"{% endif %}>A</option>
+                        <option {% if i.answer == 'B' %} selected="selected"{% endif %}>B</option>
+                        <option {% if i.answer == 'C' %} selected="selected"{% endif %}>C</option>
+                        <option {% if i.answer == 'D' %} selected="selected"{% endif %}>D</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Verify</td>
+                    <td><input type="checkbox" name="verified" {% if i.verification_status == 'True' %} value="TRUE" {% endif %} style="width: 20px;height:25px;"></td>
+                </tr>
+            </table>
+            <br><br>
+            {% endif %}
+            {% endfor %}
+            <input type="submit" value='submit' style="margin-left:300px;" class="b1">
+            <br><br>
+        </div>
+        </div>
+        </form>
+    </body>
+</html>     
+{% endblock %}

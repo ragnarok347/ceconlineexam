@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            remtime = 15000;
+            timer = setInterval(countdown,1000);
+
+            function countdown()
+            {
+                //var now = new Date();
+                //var eventdate = new Date("3 18,2020 16:03:00");
+                //var currenttime = now.getTime();
+                //var eventtime = eventdate.getTime();
+            
+                //var remtime = eventtime - currenttime;
+                remtime = remtime - 1000;
+                var s = Math.floor(remtime/1000);
+                var m = Math.floor(s/60);
+                var h = Math.floor(m/60);
+                var d = Math.floor(h/24);
+            
+                h %= 24;
+                m %= 60;
+                s %= 60;
+            
+                if( (d<=0) && (h<=0) && (m<=0) && (s<=0) )
+                {
+                    //document.getElementById('count').innerHTML = 'completed';
+                    clearInterval(timer);
+                    document.getElementById('exam').click();
+                }
+                else
+                {
+                    document.getElementById('count').innerHTML = "Exam starts in " + m + " : " + s;
+                }
+            }
+           
+        </script>
+    </head>
+    <body bgcolor="white" style="margin-left: 25px; font-family: courier;">
+        <h1 align="center" style="color: blue;">Instructions</h1>
+        <form action="exam" method="POST">
+            {% csrf_token %}
+            <h3 id="count" style="color: red; margin-left: 1230px;margin-top: 250px;position: fixed;"></h3>
+
+            <ul>
+                <li><h2>Duration of the examination is 30mins.</h2></li>
+                <li><h2>There are three types of questions:</h2></li>
+                <ul>
+                    <li><h3>MCQ (Multiple Choice Questions)</h3></li>
+                    <li><h3> T/F (True or False)</h3></li>
+                    <li><h3> SA (Short Answer)</h3></li>
+                </ul>
+                <li><h2>Questions are differentiated as follows: </h2></li>
+                <ul>
+                    <li><button style="width: 35px;height: 25px;"></button> &nbsp  Question not visited</li>
+                    <li><button style="background-color: green;width: 35px;height: 25px;margin-top: 10px;"></button> &nbsp  Question answered </li>
+                    <li><button style="background-color: red;width: 35px;height: 25px;margin-top: 10px;"></button> &nbsp  Question skipped</li>
+                    <li><button style="background-color: blue;width: 35px;height: 25px;margin-top: 10px;"></button> &nbsp  Marked for later</li>
+                    <li><button style="background-color: yellow;width: 35px;height: 25px;margin-top: 10px;"></button> &nbsp  Answered and marked for later</li>
+                </ul>
+                <li><h2><button>Marked for later</button> is used to seperately identify the questions that has to be rechecked by <br> the candidate before submitting the exam.</h2></li>
+                <li><h2>Navigation through questions is possible by simply clicking each button.</h2></li>
+                <li><h2>Name,register number and photo of the candidate is given at the top left corner. <br> If there is any mistakes inform the officials.</h2></li>
+                <li><h2>Time remaining for the exam is given at the top right corner.</h2></li>
+                <li><h2>Exam can be submitted by clicking <button style="background-color: blue;color: red;">submit</button> button.</h2></li>
+                <li><h2>Exam is auto-submitted when the timer runs out.</h2></li>
+            </ul>
+
+            <input type="text" value="{{user.username}}" name="sid" hidden>
+            <input type="submit" id='exam' hidden>
+        </form>
+    </body>
+</html>

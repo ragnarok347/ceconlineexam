@@ -1,0 +1,45 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <title>Candidate Verification</title>
+
+        <style>
+
+            .register{
+                width: 500px;
+                height: 200px;
+                margin-left: 520px;
+                margin-top: 130px;
+            }
+
+        </style>
+    </head>
+    <body style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <form method="POST" action="candidateverify2">
+            {% csrf_token %}
+            <ul>
+                <li style="margin-top: -60px;margin-right: 40px;"><a href="candidate_verify">Home</a></li>
+            </ul>
+
+            <div class="register">
+                <br><br>
+            <center>
+                Enter Registration No  
+                <input type="text" name="regid"> 
+                <br>
+                <br>
+                <input type="submit"  value="Get Details" class="b1"/>
+            </center>
+            </div>
+        </form>
+
+        <div style="color: red;margin-top: 50px;margin-left: 650px;">
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+    </body>
+</html>
+{% endblock %}

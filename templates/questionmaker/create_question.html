@@ -1,0 +1,214 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head >
+        <title>Create questions</title>
+
+        <script type="text/javascript">
+            function f(count)
+            {
+                document.getElementById("pass").value = count;
+            }
+
+            function mcqfn()
+            {
+                document.getElementById('op_a').hidden = false;
+                document.getElementById('op_b').hidden = false;
+                document.getElementById('op_c').hidden = false;
+                document.getElementById('op_d').hidden = false;
+                document.getElementById('mcq').hidden = false;
+                document.getElementById('tf').hidden = true;
+                //document.getElementById('tf').innerHTML = 'False';
+                document.getElementById('sa').hidden = true;
+                //document.getElementById('sa').innerHTML = 'False';
+                document.getElementById('types').value = 'MCQ';
+            }
+
+            function tffn()
+            {
+                document.getElementById('op_a').hidden = true;
+                document.getElementById('op_b').hidden = true;
+                document.getElementById('op_c').hidden = true;
+                document.getElementById('op_d').hidden = true;
+                document.getElementById('mcq').hidden = true;
+                //document.getElementById('mcq').innerHTML = 'False';
+                document.getElementById('tf').hidden = false;
+                document.getElementById('sa').hidden = true;
+                //document.getElementById('sa').innerHTML = 'False';
+                document.getElementById('types').value = 'True/False';
+            }
+
+            function safn()
+            {
+                document.getElementById('op_a').hidden = true;
+                document.getElementById('op_b').hidden = true;
+                document.getElementById('op_c').hidden = true;
+                document.getElementById('op_d').hidden = true;
+                document.getElementById('mcq').hidden = true;
+                //document.getElementById('mcq').innerHTML = 'False';
+                document.getElementById('tf').hidden = true;
+                //document.getElementById('tf').innerHTML = 'False';
+                document.getElementById('sa').hidden = false;
+                document.getElementById('types').value = 'Short Answer';
+            }
+        </script>
+    </head>
+
+    <body>
+        <form action="question" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div style="background-size: 1540px 1060px ; height: 1060; background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %});">
+            <ul>
+                <li style="margin-top: 50px;"><a href="maker_home">Home</a></li>
+            </ul>
+            <br><br><br><br>
+
+            <div class="register">
+
+            <center>
+            <br><br><br>
+            <div class="btn">
+            <input type="button" value="MCQ" style="margin-left: 30px;background-color: red;color: white;" onclick="mcqfn()" >
+            <input type="button" value="True or False" style="margin-left: 50px;background-color: green;color: white;" onclick="tffn()">
+            <input type="button" value="Short Answer" style="margin-left: 50px;background-color: blue;color: white;" onclick="safn()">
+            </div>
+            </center>
+
+
+            <br><br>
+            
+            <table style="margin-left: 70px; color: white; border-spacing: 25px 15px;"  >
+                <tr>
+                    <td>Question id</td>
+                    <td><input type="text"  name="question_id" value="{{qid}}" style="width: 250px;"  readonly></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <!--<td><select name="type1">
+                        <option>MCQ</option>
+                        <option>True/False</option>
+                        <option>Short Answer</option>
+                    </select></td>-->
+                    <td><input type="text" value="MCQ" name="type1" id="types" style="width: 250px;"   readonly></td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td><input type="text" name="category" style="width: 250px;" ></td>
+                </tr>
+                <tr>
+                    <td>Difficulty</td>
+                    <td><select name="difficulty" style="width: 250px;" >
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Question</td>
+                    <td><textarea rows="8" cols="70" name="question" ></textarea></td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    <td><input type="file" name="image"></td>        
+                </tr>
+                <tr id="op_a">
+                    <td>Option A</td>
+                    <td><textarea rows="4" cols="70" name="option_a" ></textarea></td>
+                </tr>
+                <tr id="op_b">
+                    <td>Option B<br></td>
+                    <td><textarea rows="4" cols="70" name="option_b" ></textarea></td>
+                </tr>
+                <tr id="op_c">
+                    <td>Option C</td>
+                    <td><textarea rows="4" cols="70" name="option_c" ></textarea></td>
+                </tr>
+                <tr id="op_d">
+                    <td>Option D</td>
+                    <td><textarea rows="4" cols="70" name="option_d" ></textarea></td>
+                </tr>
+                <tr id="mcq">
+                    <td>Answer</td>
+                    <td><select name="answer" style="width: 250;">
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                    </select></td>
+                </tr>
+                
+                <tr id="tf" hidden>
+                    <td>Answer</td>
+                    <td><select name="tf" >
+                        <option>True</option>
+                        <option>False</option>
+                    </select></td>
+                </tr>
+
+                <tr id="sa" hidden>
+                    <td>Answer</td>
+                    <td><textarea name="sa" rows="10" cols="70" ></textarea></td>
+                </tr>
+
+            </table>
+            <br>
+            <input type="submit" value='create+' style="margin-left:300px;" name="create" class="b1">
+            <input type="text" value="{{user.username}}" name="maker_id" hidden>
+
+
+        </div>
+    </div>
+
+
+            <br><br><br><br>
+           
+
+            <center>
+                <h2 style="color: red;">The table contains details about the questions you have already created. Refer it before creating new questions. <br>Questions can be edited or deleted from here.</h2>
+                <br><br>
+                <table border="1" width="1300" style="color: white;background: black;">
+                <tr>
+                    <td>Question_id</td>
+                    <td>Type</td>
+                    <td>Category</td>
+                    <td>Difficulty</td>
+                    <td>Question</td>
+                    <td>Option_a</td>
+                    <td>Option_b</td>
+                    <td>Option_c</td>
+                    <td>Option_d</td>
+                    <td>Answer</td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+                <input type="text" id="pass" name="queid" hidden>
+                {% for i in que %}
+                {% if i.question_maker_id == user.username %}
+                <tr>
+                    <td>{{i.question_id}}</td>
+                    <td>{{i.type1}}</td>
+                    <td>{{i.category}}</td>
+                    <td>{{i.difficulty}}</td>
+                    <td>{{i.question}}</td>
+                    <td>{{i.option_a}}</td>
+                    <td>{{i.option_b}}</td>
+                    <td>{{i.option_c}}</td>
+                    <td>{{i.option_d}}</td>
+                    <td>{{i.answer}}</td>
+                    
+                    <td><input type="submit" value="edit" id={{i.question_id}} name="edit" onclick="f(this.id)" style="background-color: blue;color:white;width:40px;"></td>
+                    
+                    <td><input type="submit" value="delete" name="delete" id={{i.question_id}} onclick="f(this.id)" style="background-color: red;color:white;width:50px;"></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+<br><br><br>
+        </center>
+        </form>
+    </body>
+</html>    
+{% endblock %}
+

@@ -1,0 +1,84 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <style>
+            .register
+            {
+                width: 600;
+                height: 650;
+                margin-left: 450;
+                margin-top: 100;
+            }
+
+            .b1{
+                width: 170;
+            }
+
+        </style>
+    </head>
+    <body>
+        <form action="register" method="POST" enctype="multipart/form-data"> 
+        <div style="background-size: 1540px 1060px ; height: 1060; background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        {% csrf_token %}
+        <br>
+        <div class="register">
+            <table align="center" width="600" style="margin-left: 35px;color: white; border-spacing: 25px 15px;" >
+            <caption style="color: red;margin-left: -50px;"><h1>REGISTRATION FORM</h1></caption>
+                <br><br><br>
+                <tr>
+                    <th>Exam</th>
+                    <td>
+                        <select name="eid">
+                            {% for i in exam %}
+                            <option>{{i.exam_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Enter your full name</th>
+                    <td><input type="text" name="full_name" placeholder="enter your full name" required/></td>
+                </tr>
+                <tr>
+                    <th>username</th>
+                    <td><input type="text" name="username" placeholder="enter a unique username" required/></td>
+                </tr>
+                <tr>
+                    <th>Enter your email</th>
+                    <td><input type="email" name="email" placeholder="eg:Ykris@gmail.com"required/></td>
+                </tr>
+                <tr>
+                    <th>Enter your address</th>
+                    <td> <textarea rows="5" cols="25" name="addr" required > </textarea> </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <th>Select your DOB</th>
+                    <td><input type="date" name="dob" /></td>
+                </tr>
+                <tr>
+                    <th>Upload your pic</th>
+                    <td><input type="file" name="pic"/></td>
+                </tr>
+                <tr>
+                    <th>Upload your id proof</th>
+                    <td><input type="file" name="idprof" /></td>
+                </tr>
+            </table>
+                <br>
+                    <input type="submit" value="Save My Data" style="margin-left: 100px;" class="b1">
+                    <input type="reset" value="Reset Data" class="b1">
+            </div>
+        </div>
+        </form>
+        
+        {%for message in messages%}
+        <h1 style="color: red;margin-left:550px;margin-top: -100px;">{{message}}</h1>
+        {%endfor%}
+        
+    </body>
+</html>
+{% endblock %}

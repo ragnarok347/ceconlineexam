@@ -1,0 +1,81 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <title>Official Registration</title>
+
+        <style>
+            .register{
+                margin-top: 100px;
+                height: 430px;
+                width: 500px;
+            }
+
+            .b1{
+                width: 250px;
+            }
+        </style>
+    </head>
+
+    <body style="background-size: 1540px 750px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <form action="official_register" method="post">
+            {% csrf_token %}
+            <ul>
+                <li style="margin-right: 50px;margin-top:-50px;"><a href="/admin1/admin_home">Home</a></li>
+            </ul>
+
+            <div class="register" style="margin-left: 550px;">
+            <center>
+            <br>
+            <table style="margin-top: 10px;color: white; border-spacing: 25px 15px;">
+                <tr>
+                    <th>First Name</th>
+                    <td><input type="text" name="first_name" placeholder="first name"></td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td><input type="text" name="last_name" placeholder="last name"></td>
+                </tr>
+                <tr>
+                    <th>Username</th>
+                    <td><input type="text" name="username" placeholder="username"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="email" name="email" placeholder="email"></td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td><input type="password" name="password1" placeholder="Enter password"></td>
+                </tr>
+                <tr>
+                    <th>Confirm Password</th>
+                    <td><input type="password" name="password2" placeholder="Confirm password"></td>
+                </tr>
+                <tr>
+                    <th>Role</th>
+                    <td><select name="role" style="width: 160;">
+                        <option>Question_maker</option>
+                        <option>Question_verifier</option>
+                        <option>Centre_head</option>
+                        <option>Candidate_verifier</option>
+                        <option>Result_verifier</option>
+                        <option>Admin</option>
+                    </select></td>
+                </tr>
+            </table>
+            <br>
+            <input type="submit" class="b1">
+            </div>
+            </center>
+        </form>
+        
+        <div>
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>        
+    </body>
+</html>
+{% endblock %}

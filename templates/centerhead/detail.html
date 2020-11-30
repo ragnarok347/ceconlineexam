@@ -1,0 +1,37 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <title>Download Details</title>
+
+        <style>
+            .register{
+             margin-left: 530px;
+             height: 200px;
+             width: 500px;   
+            }
+
+            .b1{
+                width: 300px;
+            }
+        </style>
+    </head>
+
+    <body topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <form method="POST" action="detail">
+        {% csrf_token %}
+        <ul style="margin-right: 70px;margin-top: 50px;">
+            <li><a href="center">Home</a></li>
+        </ul><br>
+
+        <div class="register" style="margin-top: 150px;">
+            <center><br><br>
+            Exam Name : <input type="text" name="ename"><br><br> 
+            <input type="submit" value="Download Candidate details" class="b1">
+            </center>
+        </div>
+        </form>
+    </body>
+</html>
+{% endblock %}

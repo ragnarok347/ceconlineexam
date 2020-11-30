@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            timer = setInterval(countdown,1000);
+
+            function countdown()
+            {
+                var now = new Date();
+                var eventdate = new Date("5 16,2020 16:03:10");
+                var currenttime = now.getTime();
+                var eventtime = eventdate.getTime();
+            
+                var remtime = eventtime - currenttime;
+                remtime = remtime - 1000;
+                var s = Math.floor(remtime/1000);
+                var m = Math.floor(s/60);
+                var h = Math.floor(m/60);
+                var d = Math.floor(h/24);
+            
+                h %= 24;
+                m %= 60;
+                s %= 60;
+            
+                if( (d<=0) && (h<=0) && (m<=0) && (s<=0) )
+                {
+                    document.getElementById('count').innerHTML = 'You can login now';
+                    clearInterval(timer);
+                    document.getElementById('next').disabled=false;
+                }
+                else
+                {
+                    document.getElementById('count').innerHTML = "Exam starts in " + h + " : " + m + " : " + s;
+                }
+            }
+           
+        </script>
+
+        <style>
+            
+            .box
+            {
+                width: 500px;
+                height: 360px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background: #191919;
+            }
+
+            .box input[type = "text"], .box input[type = "password"]
+            {
+                display: block;
+                margin: 5px auto;
+                text-align: center;
+                border: 2px solid;
+                padding: 14px 25px;
+                color: blue;
+                border-radius: 25px;
+                transition: 0.25s;
+            }
+
+            .box input[type = "text"]:focus,.box input[type = "password"]:focus
+            {
+                border-color: red;
+            }
+            
+            .box input[type = "submit"]
+            {
+                display: block;
+                margin: 0px auto;
+                text-align: center;
+                border: 2px solid;
+                padding: 14px 30px;
+                color: magenta;
+                border-radius: 25px;
+                transition: 0.25s;
+            }
+
+            .box input[type = "submit"]:hover
+            {
+                background: green;
+            }
+
+        </style>
+    </head>
+    <body bgcolor="#34495e" topmargin="50">
+        <center>
+        <h1 style="color: gold;">E-SOFT</h1>
+        <form action="clogin" method="post" class="box">
+            {% csrf_token %}
+            <h1 style="color: white;">Login</h1>
+            <table>
+                <tr>
+                    <td><input type="text" name="username" placeholder="username" required></td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="password" placeholder="password" required></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <input type="submit" id="next" value="login" disabled>
+            <h3 id="count" style="color: green;"></h3>
+        </form>
+    </center>
+        
+        <div style="margin-top: 500px; margin-left: 610px; color: red;">
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+    </body>
+</html>
+
+

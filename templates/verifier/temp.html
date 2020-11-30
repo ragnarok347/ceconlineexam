@@ -1,0 +1,66 @@
+if request.method == 'POST':
+        q_id = request.POST['question_id']
+        category = request.POST['category']
+        type1 = request.POST['type1']
+        difficulty = request.POST['difficulty']
+        question = request.POST['question']
+        option_a = request.POST['option_a']
+        option_b = request.POST['option_b']
+        option_c = request.POST['option_c']
+        option_d = request.POST['option_d']
+        answer = request.POST['answer']
+        verified = request.POST.get('verified')
+        if verified == 'on':
+             verified = True
+        else:
+             verified = False
+     
+        que_id = int(q_id) 
+
+        user = Question.objects.get(question_id=que_id)
+        user.category = category
+        user.type1 = type1
+        user.difficulty = difficulty
+        user.question = question
+        user.option_a = option_a
+        user.option_b = option_b
+        user.option_c = option_c
+        user.option_d = option_d
+        user.answer = answer
+        user.timestamp = datetime.now()
+        user.verification_status = verified
+        
+        user.save()
+        que_id = que_id+1
+        num = Question.objects.filter().count()
+        if que_id <= num:
+          que = Question.objects.all()
+          return render(request,'verifier/verify.html', {'que_id' : que_id , 'que' : que})
+        else:
+             return render(request,'verifier/verifier_home.html')
+     else:
+          que = Question.objects.all()
+          return render(request,'verifier/verify.html', {'que_id' : 1 , 'que' : que})
+
+
+
+          STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR,'assets')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+workbook = xlrd.open_workbook(file1)
+          worksheet = workbook.sheet_by_name('Sheet1')
+          num_rows = worksheet.nrows - 1
+          curr_row = -1
+          while curr_row < num_rows:
+               curr_row += 1
+               row1 = worksheet.row(curr_row)
+               print(row1)

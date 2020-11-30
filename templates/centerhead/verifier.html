@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+    <head>
+        <title>Candidate Verifiers</title>
+    </head>
+
+    <body topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <center>
+        <table border="1" width="1200" style="color: white;background: black;">
+            <tr>
+                <th>Verifier Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>DOB</th>
+                <th>Address</th>
+            </tr>
+
+            {% for i in ver %}
+            <tr>
+                <td>{{i.verifier_id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.dob}}</td>
+                <td>{{i.address}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </center>
+    </body>
+</html>

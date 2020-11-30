@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+<html>
+	<head>
+		{% block content %}
+	</head>
+	<body topmargin="50" >
+		<form method="POST" action="centertwo">
+			{% csrf_token %}
+
+	
+		<center>
+		<p style="font-weight: bold;">2 step verification</p>
+		<table>
+			<tr>
+				<td style="font-weight: 900;"> OTP</td>
+			</tr>
+				<tr>
+				<td><input placeholder="Enter otp" type="password" required /></td>
+				</tr>	
+				<td><button type="submit"   style="cursor: pointer;"  >send OTP</button></td>
+				
+				</center>
+		<br>
+		
+			
+	     </table> 
+		 <input type="text" name="exam" value="{{e}}" hidden>
+		</form>
+		{% endblock %}
+	</body>
+</html>

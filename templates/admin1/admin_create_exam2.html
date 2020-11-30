@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<body topmargin="100" leftmargin="100" >
+		<form action="admin_create_exam2" background-color="red" method="POST">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>Number of questions</td>
+					<td><input type="text" name="noq"/></td>				
+				</tr>			
+				<tr>
+					<td>marks per each question</td>
+					<td><input type="text" name="markperq"/></td>				
+				</tr>
+				<tr>
+					<td>Start time</td>
+					<td><input type="text" name="startime"/></td>				
+				</tr>
+				<tr>
+					<td>duration</td>
+					<td><input type="text" name="duration" /></td>				
+				</tr>
+			</table>
+			 
+			<center>
+			<button>Create+</button>							
+			</center>
+
+		</form>
+	</body>
+</html>
+{% endblock %}

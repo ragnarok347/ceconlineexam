@@ -1,0 +1,101 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head >
+        <title>Edit </title>
+    </head>
+
+    <body>
+        <form action="edit" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+
+        <div style="background-size: 1540px 1060px ; height: 1060; background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %});">
+            <ul>
+                <li style="margin-top: 50px;"><a href="maker_home">Home</a></li>
+            </ul>
+            {% for i in que %}
+            {% if i.question_id|stringformat:"i" == key %}
+            <br><br><br><br>
+            <div class="register">
+            <br><br><br>
+            <table style="margin-left: 85px;color: white; border-spacing: 25px 15px;">
+                <tr>
+                    <td>Question id</td>
+                    <td><input type="text" name="question_id" value={{i.question_id}} readonly></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <!--<td><select name="type1" value={{i.type1}}>
+                        <option {% if i.type1 == 'MCQ' %} selected="selected" {% endif %}>MCQ</option>
+                        <option {% if i.type1 == 'True/False' %} selected="selected" {% endif %}>True/False</option>
+                        <option {% if i.type1 == 'Short Answer' %} selected="selected" {% endif %}>Short Answer</option>
+                    </select></td>-->
+                    <td><input type="text" value="{{i.type1}}" name="type1" readonly></td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td><input type="text" name="category" value={{i.category}}></td>
+                </tr>
+                <tr>
+                    <td>Difficulty</td>
+                    <td><select name="difficulty" value={{i.difficulty}}>
+                        <option {% if i.difficulty == 'Easy' %} selected="selected"{% endif %}>Easy</option>
+                        <option {% if i.difficulty == 'Medium' %} selected="selected"{% endif %}>Medium</option>
+                        <option {% if i.difficulty == 'Hard' %} selected="selected"{% endif %}>Hard</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Question</td>
+                    <td><textarea rows="8" cols="70" name="question">{{i.question}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    {% if i.img == 'False' %}
+                    <input type="text" name="realimg" value="false" hidden>  
+                    <td><input type="file" name="image"></td>
+                    {% endif %}
+                    {% if i.img != 'False' %}
+                    <input type="text" name="realimg" value="true" hidden>  
+                    <td><img src="{{i.img.url}}" width="300" alt="sibin"></td>
+                    <td><input type="file" name="image" style="margin-left: -400px;"></td>
+                    <td><input type="submit" value="remove" name="remove" style="margin-left: -75px;"></td>   
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Option A</td>
+                    <td><textarea rows="4" cols="70" name="option_a">{{i.option_a}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Option B<br></td>
+                    <td><textarea rows="4" cols="70" name="option_b">{{i.option_b}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Option C</td>
+                    <td><textarea rows="4" cols="70" name="option_c">{{i.option_c}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Option D</td>
+                    <td><textarea rows="4" cols="70" name="option_d">{{i.option_d}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Answer</td>
+                    <td><select name="answer" value={{i.answer}}>
+                        <option {% if i.answer == 'A' %} selected="selected"{% endif %}>A</option>
+                        <option {% if i.answer == 'B' %} selected="selected"{% endif %}>B</option>
+                        <option {% if i.answer == 'C' %} selected="selected"{% endif %}>C</option>
+                        <option {% if i.answer == 'D' %} selected="selected"{% endif %}>D</option>
+                    </select></td>
+                </tr>
+            </table>
+            {% endif %}
+            {% endfor %}
+            <br><br>
+            <input type="submit" value='submit' name="change" style="margin-left:300px;" class="b1">
+            </div>
+        </div>
+        </form>
+    </body>
+</html>
+{% endblock %}

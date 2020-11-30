@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>hai {{name}}</h1>
+
+<form action="add" method="post">
+    {% csrf_token %}
+    1st num <input type="text" name="num1"><br>
+    2st num <input type="text" name="num2"><br>
+    <input type="submit">
+</form>
+{% endblock %}
+
+
+
+style="background-size: 1540px 800px; background-repeat: no-repeat;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/study.jpg' %})" 

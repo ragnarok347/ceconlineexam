@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+<html>
+    <head>
+		{% block content %}
+    </head>
+	<body topmargin="50" >
+		<form action="otpp" method="POST">
+			{% csrf_token %}
+		<center>
+	
+		<table>
+			<tr>
+				<td>name</td>
+				</tr>
+				<tr>
+				<td><input placeholder="name" style="color: blue;" required/></td>			
+			</tr>		
+			
+			<tr>
+				<td style="text-decoration-color: black;" style="font-weight: bold;">email</td>
+				</tr>	
+				<tr>
+				<td><input  type = "email"placeholder="enter your E-mail id" id="phone" required/></td>		
+			</tr> 
+
+		</table>
+		<button type="submit"   style="cursor: pointer;"  >send OTP</button>
+		<br>
+			
+			
+			</center>
+			<input type="text" name="exam" value="{{e}}" hidden>
+		</form>
+		{% endblock %}
+	</body>
+</html>

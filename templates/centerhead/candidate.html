@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+    <head>
+        <title>Candidates</title>
+    </head>
+    <body topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <center>
+        <table border="1" width="1000" style="color: white;background: black;">
+            <tr>
+                <th>Candidate id</th>
+                <th>Name</th>
+                <th>Verification Status</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+
+            {% for i in cand %}
+            <tr>
+                <td>{{i.candidate_id}}</td>
+                <td>{{i.name}}</td>
+                <td>{% if i.verified == True %} <h3 style="color: green;">Verified</h3> {% else %} <h3 style="color: red;">Not Verified</h3> {% endif %} </td>
+                <td>{{i.start}}</td>
+                <td>{{i.end}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </center>
+    </body>
+</html>

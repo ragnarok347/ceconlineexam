@@ -1,0 +1,42 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <title>Centre Allocation</title>
+    </head>
+
+    <body style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <form method="POST" action="centre_alloc2">
+        {% csrf_token %}
+        <ul>
+            <li style="margin-top: -50px;"><a href="admin_home">Home</a></li>
+        </ul>
+        <center>
+        <input type="text" value="{{eid}}" name="exam_id" hidden>
+        <table border="1" width="1000" style="color: white;background: black;margin-top:100px;">
+            <tr>
+                <td>Centre id</td>
+                <td>Place</td>
+                <td>Address</td>
+                <td>Capacity</td>
+                <td></td>
+            </tr>
+
+            {% for i in cent %}
+            <tr>
+                <td>{{i.centre_id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.address}}</td>
+                <td>{{i.capacity}}</td>
+                <td><input type="checkbox" name="alloc" value="{{i.centre_id}}"  {% for j in var %}  {% if i.centre_id == j %} checked  {% endif %} {% endfor %} style="height: 20px;width:20px;" ></td>    
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <input type="submit" value="Allocate" class="b1">
+        </center>
+        </form>
+    </body>
+</html>
+{% endblock %}

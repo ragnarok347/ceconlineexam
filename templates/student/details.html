@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+    <body bgcolor="black">    
+        <center><br>
+        <h1 style="color: red;">E-SOFT</h1><br><br><br>
+        <h1 style="color: green;">Successfully completed the exam</h1><br><br>
+        <table style="color: white;">
+            <tr>
+                <td><h1>Total Questions</h1></td>
+                <td><h1>: {{num}}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Questions Answered</h1></td>
+                <td><h1>: {{q1}}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Questions Skipped</h1></td>
+                <td><h1>: {{q2}}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Questions Marked for Later</h1></td>
+                <td><h1>: {{q3}}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Questions Not Visited</h1></td>
+                <td><h1>: {{q4}}</h1></td>
+            </tr>
+        </table>
+        
+        <!-- <h1>Score is : {{score}}</h1>   <body style="  background-size: 1600px 800px ; z-index: -1; background-image : url({% static 'images/image1.jpg' %} ">
+  -->
+        </center>
+    </body>
+</html>
+
+
+

@@ -1,0 +1,106 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <title>Centre Creation</title>
+        <script type="text/javascript">
+            function f(count)
+            {
+                document.getElementById("pass").value = count;
+            }
+        </script>
+
+        <style>
+			.b1{
+				width: 200px;
+			}
+
+			.register{
+				width: 500px;
+				height: 400px;
+				margin-top: 150px;
+			}
+
+			ul{
+				margin-top: -70px;
+				margin-right: 60px;
+			}
+		</style>
+    </head>
+
+    <body style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <form method="POST" action="centre_edit">
+        {% csrf_token %}
+        <ul>
+            <li><a href="admin_home">Home</a></li>
+        </ul>
+
+        <div class="register" style="margin-left: 530px;">
+            <center>
+                <br>
+            <table style="color: white; border-spacing: 25px 15px;">
+                <tr>
+                    <td>Centre id</td>
+                    <td><input type="text" name="centre_id" value="{{cid}}" readonly></td>
+                </tr>
+
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="cname"></td>
+                </tr>
+
+                <tr>
+                    <td>Centre head username</td>
+                    <td><input type="text" name="head"></td>
+                </tr>
+
+                <tr>
+                    <td>Address</td>
+                    <td><textarea rows="5" cols="20" name="address"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>Capacity</td>
+                    <td><input type="text" name="capacity"></td>
+                </tr>
+            </table>
+            <br>
+            <input type="submit" value="create+" name="create" class="b1"> 
+            </center>
+        </div>
+        
+        <br><br><br><br><br><br>
+        <center>
+        <table border="1" width="1200" style="color: white;background: black;">
+            <tr>
+                <td>Centre id</td>
+                <td>Place</td>
+                <td>Centre Head</td>
+                <td>Address</td>
+                <td>Capacity</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <input type="text" id="pass" name="cid" hidden>
+
+            {% for i in cent %}
+            <tr>
+                <td>{{i.centre_id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.head}}</td>
+                <td>{{i.address}}</td>
+                <td>{{i.capacity}}</td>
+                
+                <td><input type="submit" value="edit" id={{i.centre_id}} name="edit" onclick="f(this.id)" style="background-color: blue;color:white;width:40px;"></td>
+                
+                <td><input type="submit" value="delete" name="delete" id={{i.centre_id}} onclick="f(this.id)" style="background-color: red;color:white;width:60px;"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br><br>
+        </center>
+    </form>
+    </body>
+</html>
+{% endblock %}

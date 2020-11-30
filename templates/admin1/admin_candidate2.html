@@ -1,0 +1,57 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <title>Candidate</title>
+        <style>
+            .btn:hover{
+                background-color: green;
+            }
+        </style>
+
+        <script type="text/javascript">
+            function f(count)
+            {
+                document.getElementById("pass").value = count;
+            }
+        </script>
+    </head>
+
+    <body style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <ul>
+            <li style="margin-top: 20px;"><a href="admin_home">Home</a></li>
+        </ul>
+        <center>
+        <h1 style="color: red;margin-top:50px;">List of Candidates</h1>
+       </center>
+       <form method="POST" action="view_cand">
+        {% csrf_token %}
+        
+        <table align="center" width=1000 style="color: white;background: black;margin-top:70px;margin-left:220px;">
+            <tr>
+                <th>Registration No</th>
+                <th>Name</th>                   
+                <th>Email</th>
+                <th></th>
+            </tr>
+            <input type="text" id="pass" name="pass" hidden>
+            <input type="text" name="eid" value="{{eid}}" hidden>
+
+            {% for i in stud %}
+            {% if i.exam_id == eid %}
+            <tr>
+                <td>{{i.registration_id}}</td>
+                <td>{{i.full_name}}</td>
+                <td>{{i.email}}</td>
+                <td><input type="submit" id={{i.student_id}} onclick="f(this.id)" value="View Details" class="btn"></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+       
+
+    </form> 
+    </body>
+</html>
+{% endblock %}

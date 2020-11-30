@@ -1,0 +1,65 @@
+{% load static %}
+<html>
+    <head>
+        <title>Candidate Verification</title>
+        <style>
+
+            .b1{
+                background: #2d85b0;
+                text-align: center;
+                padding: 15px;
+                width: 200px;
+                border-radius: 10px;
+                color: white;
+                cursor: pointer;
+                font-size: 20;
+            }
+ 
+            .b1:hover{
+             background: green;
+             }
+ 
+         </style>
+    </head>
+    <body style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <center>
+            <h1 style="color: red;margin-top: 30px;">CANDIDATE VERIFICATION</h1>
+        <form method="POST" action="verify">
+            {% csrf_token %}
+            <table align="center" style="color: white;background-color: black;" width=800>
+                <tr>
+                    <th>Candidate Id</th>
+                    <td><input type="text" value={{i.candidate_id}} name="regid"></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td><input type="text" value="{{i.name}}"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="email" value={{i.email}}></td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td> <textarea rows="5" cols="25">{{i.address}}</textarea> </td>
+                </tr>
+                <tr>
+                    <th>Picture</th>
+                    <td><img src="{{i.pic.url}}" width="250"></td>
+                </tr>
+                <tr>
+                    <th>DOB</th>
+                    <td><input type="text" value="{{i.dob}}"></td>
+                </tr>
+                <tr>
+                    <th>ID Proof</th>
+                    <td><img src="{{i.idprof.url}}" width="500"></td>
+                </tr>
+            </table>
+            <br><br>
+            <input type="submit" value='verify' class="b1">
+    
+        </form>
+    </center>
+    </body>
+</html>

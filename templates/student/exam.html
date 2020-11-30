@@ -1,0 +1,181 @@
+{% extends 'student/exambase.html' %}
+{% block content %}
+<html>
+    <head>
+        <script type="text/javascript">
+            function clearval()
+            {
+                document.getElementById('option1').checked = false;
+                document.getElementById('option2').checked = false;
+                document.getElementById('option3').checked = false;
+                document.getElementById('option4').checked = false;
+            }
+
+            function clearval2()
+            {
+                document.getElementById('t').checked = false;
+                document.getElementById('f').checked = false;
+            }
+
+            function clearval3()
+            {
+                document.getElementById('sa').value = '';
+            }
+
+            function buttonf(val)
+            {
+                document.getElementById('b').value = val;
+            }
+            //var remtime = 1800000;
+            //var flag = 0;
+            var remtime = {{a}};
+            timer = setInterval(countdown,1000);
+
+            function countdown()
+            {
+                //var now = new Date();
+                //var eventdate = new Date("3 18,2020 16:10:50");
+                //var currenttime = now.getTime();
+                //var eventtime = eventdate.getTime();
+
+                //var remtime = eventtime - currenttime;
+                remtime = remtime - 1000;
+                //flag += 1;
+                var s = Math.floor(remtime/1000);
+                var m = Math.floor(s/60);
+                var h = Math.floor(m/60);
+                var d = Math.floor(h/24);
+
+                h %= 24;
+                m %= 60;
+                s %= 60;
+
+                /*if(flag == 5)
+                {
+                    flag = 0;
+                    document.getElementById('db').value = remtime;
+                    document.getElementById('repeat').click();
+                }
+
+                if(flag == 1)
+                {
+                    remtime -= 1000;
+                }*/
+
+                if( (d<=0) && (h<=0) && (m<=0) && (s<=0) )
+                {
+                    document.getElementById('count').innerHTML = 'completed';
+                    clearInterval(timer);
+                    document.getElementById('finish1').click();
+                }
+                else
+                {
+                    document.getElementById('count').innerHTML = d + " : " + h + " : " + m + " : " + s;
+                }
+                document.getElementById('db').value = remtime;
+            }
+          
+           
+        </script>
+    </head>
+
+    <body>
+        <form action="save" method="POST">
+        <div class="top">
+            <center>
+                <h1>E-SOFT</h1>
+            </center>
+            <ul >
+                <li id="count"></li>
+            </ul>
+            <ul style="float: left;">
+                <li>{{user.first_name}} &nbsp; {{user.last_name}}</li><br>
+                <li>{{user.username}}</li>
+            </ul>
+        </div>
+        
+        <div class="question">
+            {% csrf_token %}
+            <input type="text" id="time" value="{{a}}" hidden>
+            <input type="text" id="db" name="db1" value="100000" hidden>
+            {% for i in que %}
+            {% if i.question_id == count %}
+            <input type="text" value="{{count}}" name="count" hidden>
+            <input type="text" name="answer" value="{{i.answer}}" hidden>
+            <input type="text" name="idval" value="{{i.question_id}}" hidden>
+            <input type="text" name="category" value="{{i.type1}}" hidden>
+            <input type="text" name="sid" value="{{user.username}}" hidden>
+
+            <h3 hidden>{{i.question}}</h3>
+            <textarea rows="15" cols="140" name="question" hidden>{{i.question}}</textarea>
+            <h2 style="width: 1000;">{{i.question}}</h2>
+            <br><br><br>
+            
+            {% if i.img != 'False' %}
+                    <img src="{{i.img.url}}" width="1000" alt="sibin"><br><br><br>  
+            {% endif %}
+
+            <input type="text" value="{{i.type1}}" name="type1" hidden>
+            {% if i.type1 == 'MCQ' %}
+            <input type="radio" name="option" value="1" id="option1" 
+            {% for j in res %} {% if i.question == j.question %} {% if j.student_id == user.username %} {% if j.response == 'A' %} checked {% endif %} {% endif %} {% endif %} {% endfor %}
+            >{{i.option_a}}<br><br><br>
+            <input type="radio" name="option" value="2" id="option2"
+            {% for j in res %} {% if i.question == j.question %} {% if j.student_id == user.username %} {% if j.response == 'B' %} checked {% endif %} {% endif %} {% endif %} {% endfor %}
+            >{{i.option_b}}<br><br><br>
+            <input type="radio" name="option" value="3" id="option3"
+            {% for j in res %} {% if i.question == j.question %} {% if j.student_id == user.username %} {% if j.response == 'C' %} checked {% endif %} {% endif %} {% endif %} {% endfor %}
+            >{{i.option_c}}<br><br><br>
+            <input type="radio" name="option" value="4" id="option4"
+            {% for j in res %} {% if i.question == j.question %} {% if j.student_id == user.username %} {% if j.response == 'D' %} checked {% endif %} {% endif %} {% endif %} {% endfor %}
+            >{{i.option_d}}<br><br><br>
+            {% endif %}
+
+            {% if i.type1 == 'True/False' %}
+            <input type="radio" name="tf" value="1" id="t" 
+            {% for j in res %} {% if i.question == j.question %} {% if j.student_id == user.username %} {% if j.response == 'True' %} checked {% endif %} {% endif %} {% endif %} {% endfor %}
+            >True<br><br><br>
+            <input type="radio" name="tf" value="2" id="f"
+            {% for j in res %} {% if i.question == j.question %} {% if j.student_id == user.username %} {% if j.response == 'False' %} checked {% endif %} {% endif %} {% endif %} {% endfor %}
+            >False<br><br><br>
+            {% endif %}
+
+            {% if i.type1 == 'Short Answer' %}
+            <textarea rows="15" cols="140" placeholder="write your answer here" name="sa" id="sa" >{% for j in res %} {% if i.question == j.question %} {% if j.student_id == user.username %} {{j.response}} {% endif %} {% endif %} {% endfor %}
+            </textarea>
+            {% endif %}
+        </div>
+
+        <div class="work">            
+            <input type="submit" value="Prev" style="margin-left: 20px;" name="prev" {% if count == 1 %} disabled {% endif %}>
+            <input type="button" value="Clear Response" style="margin-left: 50px;" {% if i.type1 == 'MCQ' %} onclick="clearval()" {% endif %}   {% if i.type1 == 'True/False' %} onclick="clearval2()" {% endif %}   {% if i.type1 == 'Short Answer' %} onclick="clearval3()" {% endif %} >
+            <input type="submit" value="Remind Me Later & Next" style="margin-left: 50px;" name="remind">
+            <input type="submit" value="Save & Next" style="margin-left: 50px;" name="next">
+            <input type="submit" value="Submit" style="margin-left: 200px;width : 80px;height : 30px; background-color : blue;"  name="finish" id="finish" onclick="return confirm('Do you want to submit?')" />
+            <input type="submit" value="Submit" name="finish1" id="finish1" hidden/>
+            <input type="submit" id="repeat" name="concurrent" hidden>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="guide">
+            <button>?</button> &nbsp; Not Visited<br><br>
+            <button style="background-color: red;">?</button> &nbsp; Not Answered<br><br>
+            <button style="background-color: green;">?</button> &nbsp; Answered<br><br>
+            <button style="background-color: blue;">?</button> &nbsp; Marked For Later<br><br>
+            <button style="background-color: yellow;">?</button> &nbsp; Submitted And Marked For Later<br><br>
+        </div>
+
+        <div class="buttons">
+            {% for n in num %}
+            {% if n|divisibleby:"5" %}
+            <br><br>
+            {% endif %}
+            <input type="submit" class="b1" {% for j in res %} {% if j.question_id == n|add:1 %} {% if j.student_id == user.username %} style="background-color : {{j.button}}" {% endif %} {% endif %} {% endfor %} value="{{n|add:1}}" name="buttons" id="{{n|add:1}}" onclick="buttonf(this.id)">
+            {% endfor %}
+            <input type="text" name="buttonval" id="b" hidden>
+        </div>
+        </form>
+    </body>
+</html>
+{% endblock %}

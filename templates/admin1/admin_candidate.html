@@ -1,0 +1,44 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+	<head>
+		<title>Candidates</title>
+		<style>
+			.register{
+				width: 500px;
+				height: 200px;
+			}
+
+			.b1{
+				width: 300px;
+			}
+		</style>
+	</head>
+
+	<body topmargin="50" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+		<form method="POST" action="admin_candidate2">
+		{% csrf_token %}
+		<ul>
+			<li style="margin-right: 50px;margin-top:-110px;"><a href="admin_home">Home</a></li>
+		</ul>
+		<div class="register" style="margin-left: 530px;">
+			<center>
+			<table style="margin-top: 200px;color: white; border-spacing: 25px 15px;padding-top:35px;">
+				<tr>
+					<td>Examination Name</td>
+					<td><select name="examname">
+						{% for i in exam %}
+						<option>{{i.exam_name}}</option>
+						{% endfor %}
+					</select></td>				
+				</tr>			
+			</table>
+			<br>
+			<input type="submit" value="View Registered Candidates" class="b1">
+			</center>
+		</div>
+		</form>
+	</body>
+</html>
+{% endblock %}

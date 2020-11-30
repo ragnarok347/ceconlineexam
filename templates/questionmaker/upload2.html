@@ -1,0 +1,26 @@
+<html>
+    <body>
+        {% for i in load %}
+        {% if i.id == 4 %}
+        <h1>hai
+
+            from django.core.files.storage import default_storage
+
+#  Saving POST'ed file to storage
+file = request.FILES['myfile']
+file_name = default_storage.save(file.name, file)
+
+#  Reading file from storage
+file = default_storage.open(file_name)
+file_url = default_storage.url(file_name)
+
+onclick="location.href='editquestion'"
+        </h1>
+        {% endif %}
+        {% endfor %}
+    </body>
+</html>
+
+
+user1 = FileUpload(file1=file1,verification_status=False)
+          user1.save()

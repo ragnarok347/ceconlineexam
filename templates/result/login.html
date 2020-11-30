@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <style>
+            form input button{
+                width: 100px;
+                height: 30px;
+            cursor: pointer;
+            display: inline-block;
+            }
+            
+        </style>
+    </head>
+    <body bgcolor="cyan" topmargin="100">
+        <center>
+        <form action="verifier" method="POST">
+            {% csrf_token %}
+           <p style="font-weight: bolder;"> Verifier Login</p>
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" placeholder="username"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" placeholder="password"></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <button type="submit"  style="cursor: pointer;" >submit</button>
+        </form>
+         </center>
+        
+        
+    </body>
+</html>
+

@@ -1,0 +1,71 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head >
+        <title>Edit Centre</title>
+        <style>
+			.b1{
+				width: 200px;
+			}
+
+			.register{
+				width: 400px;
+				height: 430px;
+				margin-top: 150px;
+			}
+
+			ul{
+				margin-top: -70px;
+				margin-right: 60px;
+			}
+		</style>
+    </head>
+
+    <body topmargin="40" leftmargin="70" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <form action="centre_edit_list" method="POST">
+            {% csrf_token %}
+            <ul>
+                <li style><a href="admin_home">Home</a></li>
+            </ul>
+            {% for i in cent %}
+            {% if i.centre_id|stringformat:"i" == key %}
+            <div class="register" style="margin-left: 530px;">
+            <center>
+            <br>
+            <table style="margin-top: 10px;color: white; border-spacing: 25px 15px;">
+                <tr>
+                    <td>Centre id</td>
+                    <td><input type="text" name="centre_id" value="{{key}}" readonly></td>
+                </tr>
+
+                <tr>
+                    <td>Centre Name</td>
+                    <td><input type="text" name="cname" value="{{i.name}}"></td>
+                </tr>
+
+                <tr>
+                    <td>Centre head username</td>
+                    <td><input type="text" name="head" value="{{i.head}}"></td>
+                </tr>
+
+                <tr>
+                    <td>Address</td>
+                    <td><textarea rows="5" cols="20" name="address">{{i.address}}</textarea></td>
+                </tr>
+
+                <tr>
+                    <td>Capacity</td>
+                    <td><input type="text" name="capacity" value="{{i.capacity}}"></td>
+                </tr>
+            </table>
+            <br><br>
+            <input type="submit" value='edit' class="b1">
+            </center>
+        </div>
+            {% endif %}
+            {% endfor %}
+        </form>
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <style>
+           
+            .register{
+                margin-top: 100px;
+                width: 1000px;
+                height: 530px;
+            }
+
+        </style>
+    </head>
+
+    <body topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/bg.jpg' %}"> 
+      <form method="POST" action="exam">
+        {% csrf_token %}
+        <ul>
+            <li style="margin-top: -50px;"><a href="verifier">Home</a></li>
+        </ul>
+
+        <div class="register">
+        <center>
+            <br><br>
+        {% for i in que %}
+        {% if i.response_id == id %}
+        <input type="text" value="{{id}}" name="qid" hidden>
+          <table style="color: white; border-spacing: 25px 15px;">  
+            <tr>
+                <td>Question</td>
+                <td><textarea rows="10" cols="100" name="question">{{i.question}}</textarea></td>
+            </tr>
+             <tr>
+                <td>Answer</td>
+                <td><textarea rows="4" cols="100" name="answer">{{i.answer}}</textarea></td>
+            </tr>
+          
+            <tr>
+           <td>Response</td>
+           <td><textarea rows="4" cols="100" name="response">{{i.response}}</textarea></td>
+            </tr>
+        </table>
+            <br><br>
+            <input type="submit" value='True' name="true" style="margin-left: 50px;width: 100;height: 50;" class="b1">
+            <input type="submit" value='False' name="false" style= "width: 100;height: 50;" class="b1">
+         {% endif %}
+         {% endfor %}
+        </center>
+        </div>
+     </form>
+    </body>
+</html>
+{% endblock %}

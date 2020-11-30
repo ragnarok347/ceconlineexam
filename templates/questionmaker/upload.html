@@ -1,0 +1,72 @@
+{% load static %}
+<html>
+    <head >
+        <title>Upload</title>
+        <style>
+            ul{
+                float: right;
+                margin-top: -100px;
+                margin-right: 30px;
+            }
+
+            ul li{
+                display: inline-block;
+            }
+
+            ul li a{
+                text-decoration: none;
+                color: #fff;
+                padding: 5px 10px;
+                border: 1px solid #fff;
+                transition: 0.6s ease;
+            }
+
+            ul li a:hover{
+                background-color: #fff;
+                color: red;
+            }
+
+            .register{
+                background-color: rgb(0,5,6,0.5);
+                width: 700px;
+                height: 400px;
+                margin: 0px 0px 0px -10px;
+                margin-top: 175px;
+                color: white;
+                font-size: 18px;
+                border-radius: 10px;
+            }
+
+            .b1{
+                background: #2d85b0;
+                text-align: center;
+                padding: 15px;
+                width: 250px;
+                border-radius: 10px;
+                color: white;
+                cursor: pointer;
+            }
+ 
+            .b1:hover{
+                background: green;
+            }
+
+        </style>
+    </head>
+
+    <body style="background-size: 1540px 1050px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <form action="uploadfile" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <ul>
+                <li style="margin-right: 50px;"><a href="maker_home">Home</a></li>
+            </ul>
+            <center>
+            <div class="register">
+            <input type="file" name="file1" style="margin-top: 130;margin-left:20;" required><br><br>
+            <input type="submit" value="upload" class="b1" style="margin-left: -30px; margin-top: 50px;">
+            <input type="text" name="maker_id" value="{{user.username}}" hidden>
+            </div>
+            </center>
+        </form>
+    </body>
+</html>

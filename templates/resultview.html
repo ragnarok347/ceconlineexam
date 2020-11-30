@@ -1,0 +1,46 @@
+{% load static %}
+<html>
+    <body bgcolor="black">    
+        <center><br>
+        <h1 style="color: red;">E-SOFT</h1><br><br><br>
+        <table style="color: white;">
+            <tr>
+                <td>Name : </td>
+                <td>{{cand.full_name}}</td>
+            </tr>
+            <tr>
+                <td >Exam Name : </td>
+                <td>{{ename}}</td>
+            </tr>
+            <tr>
+                <td>Date Of Birth : </td>
+                <td>{{cand.dob}}</td>
+            </tr>
+            <tr>
+                <td><img src="{{cand.pic.url}}" width="200px" alt="hai bro"></td>
+            </tr>
+            <tr>
+                <td>Marks obtained : </td>
+                <td>{{res.score}}</td>
+            </tr>
+            <tr>
+                <td>Total marks : </td>
+                <td>{{total}}</td>
+            </tr>
+            <tr>
+                <td>Criteria : </td>
+                <td>{{exdt.cutoff}}</td>
+            </tr>
+            <tr>
+                <td>Result :</td>
+                <td>{% if res.passed == True %} <h3 style="color: green;">Passed</h3> {% endif %} {% if res.passed == False %} <h3 style="color: red;">Failed</h3> {% endif %}</td>
+            </tr>
+        </table>
+        
+        
+        </center>
+    </body>
+</html>
+
+
+

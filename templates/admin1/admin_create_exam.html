@@ -1,0 +1,101 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+	<head>
+		<title>Create Exam</title>
+		<style>
+			.b1{
+				width: 200px;
+			}
+
+			.register{
+				width: 500px;
+				height: 650px;
+				margin-top: 60px;
+			}
+
+			ul{
+				margin-top: -70px;
+				margin-right: 60px;
+			}
+		</style>
+	</head>
+
+	<body topmargin="50px" topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+		<form action="admin_create_exam" method="POST">
+			{% csrf_token %}
+			<ul>
+                <li style="margin-top: 70px;"><a href="admin_home">Home</a></li>
+            </ul>
+
+			<div class="register" style="margin-left: 530px;">
+			<center>
+			<table style="margin-top: 10px;color: white; border-spacing: 25px 15px;">
+				<br>
+				<tr>
+					<td>Examination Name</td>
+					<td><input type="text" name="examname"/></td>				
+				</tr>
+				<tr>
+					<td>No of easy questions</td>
+					<td><input type="text" name="easy"></td>
+				</tr>	
+				<tr>
+					<td>No of medium questions</td>
+					<td><input type="text" name="medium"></td>
+				</tr>	
+				<tr>
+					<td>No of hard questions</td>
+					<td><input type="text" name="hard"></td>
+				</tr>
+				<tr>
+					<td>Marks for each question</td>
+					<td><input type="text" name="mark"></td>
+				</tr>
+				<tr>
+					<td>Cutoff Mark</td>
+					<td><input type="text" name="cutoff"></td>
+				</tr>
+				<tr>
+					<td>Publish result immediately</td>
+					<td><select name="immediate">
+						<option>Yes</option>
+						<option>No</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Exam Registration start date</td>
+					<td><input type="date" name="reg_start"></td>
+				</tr>
+				<tr>
+					<td>Exam Registration end date</td>
+					<td><input type="date" name="reg_end"></td>
+				</tr>
+				<tr>
+					<td>Exam Date</td>
+					<td><input type="date" name="exam_date"></td>
+				</tr>
+				<tr>
+					<td>Starting Time</td>
+					<td><input type="time" name="start"></td>
+				</tr>
+				<tr>
+					<td>Duration of Exam(in minutes)</td>
+					<td><input type="text" name="duration"></td>
+				</tr>
+				<tr>
+					<td>Result Publication date</td>
+					<td><input type="date" name="publish_date"></td>
+				</tr>
+			</table>
+			<br>
+			<input type="submit" value="Create+" class="b1">
+		</form>
+		</center>
+		</div>
+
+	</body>
+
+</html>
+{% endblock %}

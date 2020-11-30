@@ -1,0 +1,21 @@
+{% extends 'newbase.html' %}
+{% block content %}
+{% load static %}
+<html>
+	<body topmargin="100" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/maker_pic.jpg' %}"	>
+		<form>
+			<ul>
+                <li style="margin-right: 50px;"><a href="admin_home">Home</a></li>
+            </ul>
+			<div class="main">
+				<center><h1 class="title">E-SOFT</h1></center>
+			</div>
+			<div class="button">
+				<ul>
+					<li><a href="centre_edit" class="btn">Add/Delete Centres</a></li>
+					<li><a href="exam_centre" class="btn">Allocate Centres</a></li>
+				</ul>
+		</form>
+	</body>
+</html>
+{% endblock %}

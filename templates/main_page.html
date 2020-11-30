@@ -1,0 +1,102 @@
+{% extends 'newbase.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head >
+        <title>Admin Home</title>
+
+        <style>
+            .active{
+                color:red;
+            }
+
+            .main{
+                height: 750px;
+            }
+
+            .heading{
+                margin-left: 150px;
+                color:red;
+                font-family: Monospace;
+                font-size: 35px;
+                padding-top: 100px;
+            }
+
+            .sub{
+                margin-top: 70px;
+                font-family: monospace;
+                font-size: 25px;
+                margin-left: 150px;
+            }
+
+            .heading2{
+                margin-left: 650px;
+                color:red;
+                font-family: Monospace;
+                font-size: 35px;
+                padding-top: 100px;
+            }
+
+            .sub2{
+                margin-top: 70px;
+                font-family: monospace;
+                font-size: 25px;
+                margin-left: 650px;
+            }
+        </style>
+        
+    </head>
+
+    <body topmargin="100">
+        <div class="main"style="background-size: 1540px 800px; background-repeat: no-repeat; background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/study.jpg' %});">
+            <ul style="margin-right: 100px;">
+                <li><a class="active">Home</a class="active"></li>
+                <li><a href="reg/register">Candidate Registration</a></li>
+                <li><a href="ologin">Official Login</a></li>
+                <li><a href="resultview">Result</a></li>
+            </ul>
+
+            <center><h1 class="title" style="margin-top: 80;">E-SOFT</h1></center>
+            <ul style="margin-right: 70px;">
+                <!--<li><a href="accounts/register">Register</a></li>-->
+               
+            </ul>
+            <ul style="float: left; margin-left: 70px;">
+                
+            </ul>          
+        </div>
+
+    <body>
+        
+    <div class="about" style="margin-top: 100px; height:200px;">
+        <center><h1 style="font-size: 50px; transform: translate(-2%,-57%); color:blue;">ABOUT</h1>
+        <h2>An examination management system that comprises of many security features and smooth functionality</h2>
+        </center>
+    </div>
+
+    <div style="height: 500px;background:cyan;">
+        <img src="{% static 'images/questionpic.jpg' %}" width="350"  style="float:right; border-radius: 50%;margin-right: 200px;margin-top: 80px;">
+        <h1 class="heading">Question Making</h1>
+        <h2 class="sub">Questions can be created manually or can be imported.<br> Question verification procedure is also used to validate questions before examination.</h2>
+    </div>
+
+    <div style="height: 500px;">
+        <img src="{% static 'images/verificationpic.png' %}" width="350"  style="float:left; border-radius: 50%;margin-left: 200px;margin-top: 80px;">
+        <h1 class="heading2">Candidate Verification</h1>
+        <h2 class="sub2">Procedure enable an additional security to avoid <br> malpractices. Only verified candidates are allowed <br> to attend examination</h2>
+    </div>  
+
+    <div style="height: 500px;background:cyan;">
+        <img src="{% static 'images/onlinepic.png' %}" width="350" height="350"  style="float:right; border-radius: 50%;margin-right: 200px;margin-top: 80px;">
+        <h1 class="heading">Offline Conduction of examination</h1>
+        <h2 class="sub">Exams are conducted via offline which reduces load on main server. Internet is only required only at the initial and final phases.</h2>
+    </div>
+
+    <div style="height: 500px;">
+        <img src="{% static 'images/resultpic.jpg' %}" width="350" height="300" style="float:left; border-radius: 50%;margin-left: 200px;margin-top: 80px;">
+        <h1 class="heading2">Result Publication</h1>
+        <h2 class="sub2">Feature allows us to generate result automatically <br> or manually according to the requirement. Result <br> publication allows the candidates to see their results.</h2>
+    </div>  
+
+</html>
+{% endblock %}

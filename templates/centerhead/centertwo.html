@@ -1,0 +1,82 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+    <head>
+        <title>Download</title>
+        <style>
+            ul{
+				margin-top: 80px;
+				margin-right: 80px;
+            }
+            
+            .register{
+                margin-top: 150px;
+                margin-left: 520px;
+                height: 200px;
+                width: 500px;
+            }
+
+            .b1{
+                width: 300px;
+            }
+        </style>
+
+        <script type="text/javascript">
+            timer = setInterval(countdown,1000);
+
+            function countdown()
+            {
+                var now = new Date();
+                var eventdate = new Date("6 16,2020 21:13:10");
+                var currenttime = now.getTime();
+                var eventtime = eventdate.getTime();
+            
+                var remtime = eventtime - currenttime;
+                remtime = remtime - 1000;
+                var s = Math.floor(remtime/1000);
+                var m = Math.floor(s/60);
+                var h = Math.floor(m/60);
+                var d = Math.floor(h/24);
+            
+                h %= 24;
+                m %= 60;
+                s %= 60;
+            
+                if( (d<=0) && (h<=0) && (m<=0) && (s<=0) )
+                {
+                    document.getElementById('demo').innerHTML = 'You can download now';
+                    clearInterval(timer);
+                    document.getElementById('next').disabled=false;
+                }
+                else
+                {
+                    document.getElementById('demo').innerHTML = "You can dowload in " + h + " : " + m + " : " + s;
+                }
+            }
+       
+        </script>
+    </head>
+
+    <body style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+        <ul>
+            <li style="margin-top: -150px;"><a href="center">Home</a></li>
+        </ul>
+
+        <form  method="POST" action="download" >
+        {% csrf_token %}
+        <div class="register">
+            <center>
+            <table style="margin-top: 100px;padding-top: 20px;">	
+                <tr>
+                    <td><input type="submit" value="Press here to download" id="next" class="b1"  disabled></td>
+                </tr>
+            </table><br>
+            <h3 id="demo" style="color: red;"></h3>
+            </center>
+            <input type="text" name="exam" value="{{e}}" hidden>
+        </div>
+        </form>
+    </body>
+</html>
+{% endblock %}

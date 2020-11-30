@@ -1,0 +1,20 @@
+<html>
+    <head>
+       <title>Official Registration</title>
+    </head>
+    
+    <body>
+        <form action="register" method="POST">
+            {% csrf_token %}
+            <p>Center Head Registration</p>
+            <input type="text" name="first_name" placeholder="first name"><br>
+            <input type="text" name="last_name" placeholder="last name"><br>
+            <input type="text" name="username" placeholder="username"><br>
+            <input type="password" name="password" placeholder="password"><br>
+            <input type="email" name="email" placeholder="email"><br>
+            <<button type="submit"  style="cursor: pointer;" >register</button>            
+            
+        </form>
+        
+    </body>
+</html>

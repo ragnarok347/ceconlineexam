@@ -1,0 +1,89 @@
+{% extends 'questionmaker/create_question_base.html' %}
+{% block content %}
+{% load static %}
+<html>
+	<head>
+		<title>Edit Exam</title>
+		<style>
+			.register{
+				height: 650px;
+				width: 500px;
+			}
+		</style>
+
+	</head>
+
+	<body topmargin="50" style="background-size: 1540px 752px ;  background-image : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'images/makepic.jpg' %}">
+		<form method="POST" action="edit_exam2">
+		{% csrf_token %}
+		<ul>
+			<li style="margin-right: 50px;"><a href="admin_home">Home</a></li>
+		</ul>
+		<div class="register" style="margin-left: 525px;">
+			<center>
+				<table style="margin-top: 50px;color: white; border-spacing: 25px 15px;padding-top:35px;">
+					<input type="text" name="eid" value="{{exam.exam_id}}" hidden>
+					<tr>
+						<td>Examination Name</td>
+						<td><input type="text" name="examname" value="{{exam.exam_name}}"></td>				
+					</tr>
+					<tr>
+						<td>No of easy questions</td>
+						<td><input type="text" name="easy" value="{{exam.easy}}"></td>
+					</tr>
+					<tr>
+						<td>No of medium questions</td>
+						<td><input type="text" name="medium" value="{{exam.medium}}"></td>
+					</tr>
+					<tr>
+						<td>No of hard questions</td>
+						<td><input type="text" name="hard" value="{{exam.hard}}"></td>
+					</tr>
+					<tr>
+						<td>Marks for each question</td>
+						<td><input type="text" name="mark" value="{{exam.marks}}"></td>
+					</tr>
+					<tr>
+						<td>Cutoff Mark</td>
+						<td><input type="text" name="cutoff" value="{{exam.cutoff}}"></td>
+					</tr>
+					<tr>
+						<td>Publish result immediately</td>
+						<td><select name="immediate">
+							<option {% if exam.immediate == True %} selected="selected"{% endif %}>Yes</option>
+							<option {% if exam.immediate == False %} selected="selected"{% endif %}>No</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>Exam Registration start date</td>
+						<td><input type="date" name="reg_start" value="{{exam.reg_start|date:'Y-m-d'}}"></td>
+					</tr>
+					<tr>
+						<td>Exam Registration end date</td>
+						<td><input type="date" name="reg_end" value="{{exam.reg_end|date:'Y-m-d'}}"></td>
+					</tr>
+					<tr>
+						<td>Exam Date</td>
+						<td><input type="date" name="exam_date" value="{{exam.exam_date|date:'Y-m-d'}}"></td>
+					</tr>
+					<tr>
+						<td>Starting Time</td>
+						<td><input type="time" name="start" value="{{start}}"></td>
+					</tr>
+					<tr>
+						<td>Duration of Exam(in minutes)</td>
+						<td><input type="text" name="duration" value="{{exam.duration}}"></td>
+					</tr>
+					<tr>
+						<td>Result Publication date</td>
+						<td><input type="date" name="publish_date" value="{{exam.publish_date|date:'Y-m-d'}}"></td>
+					</tr>	
+				</table>
+				<br>
+				<input type="submit" value="Edit" class="b1">
+				</center>
+			</div>
+		</form>
+	</body>
+</html>
+{% endblock %}
